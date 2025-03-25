@@ -110,7 +110,7 @@ const Footer = () => {
                   href="/blog/categories/food-cuisine"
                   className="hover:text-purple-300 transition-colors duration-200"
                 >
-                  Food &Cuisine
+                  Food & Cuisine
                 </a>
               </li>
               <li>
