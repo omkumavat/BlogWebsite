@@ -20,6 +20,7 @@ import {
 import { useLocation, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
 
 // Categories dummy data (you can expand or modify as needed)
 const categories = [
@@ -190,6 +191,7 @@ function CategoryPage() {
   const totalPages = Math.ceil(blogs.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const currentBlogs = blogs.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -251,7 +253,10 @@ function CategoryPage() {
                                 {/* {blog.author.role} */}
                               </span>
                             </div>
-                            <button className="text-blue-600 hover:text-blue-800 flex items-center gap-1 font-medium">
+                            <button className="text-blue-600 hover:text-blue-800 flex items-center gap-1 font-medium"
+                             onClick={() =>
+                              navigate(`/blog/category/${blog._id}`, { state: { blog } }) 
+                            }>
                               Read article <ChevronRight size={16} />
                             </button>
                           </div>
