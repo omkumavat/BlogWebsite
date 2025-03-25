@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
   })();
 
   const [currentUser, setCurrentUser] = useState(initialUser);
-
+  
   const login = (user) => {
     setCurrentUser(user);
     localStorage.setItem('UsersBlog', JSON.stringify(user));

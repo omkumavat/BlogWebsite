@@ -50,10 +50,10 @@ const teamMembers = [
     name: "Anuj Maheshwari",
     role: "Frontend Developer",
     bio: "React enthusiast focused on building responsive and accessible interfaces.",
-    image: "images/art.jpg",
+    image: "images/anujphoto.jpg",
     social: {
-      github: "https://github.com",
-      linkedin: "https://linkedin.com",
+      github: "https://github.com/infinityedge24",
+      linkedin: "http://www.linkedin.com/in/anuj2304",
     },
   },
 ];
