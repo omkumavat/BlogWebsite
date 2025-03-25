@@ -23,7 +23,7 @@ function Signup({ onSwitchToLogin }) {
   const [loading, setLoading] = useState(false);
   const [disablf, setDisablef] = useState(false);
   const navigate = useNavigate();
-  const {login}=useAuth();
+  const { login } = useAuth();
 
   // Countdown timer effect for OTP step.
   useEffect(() => {
@@ -69,15 +69,45 @@ function Signup({ onSwitchToLogin }) {
 
   const validatePasswordStep = () => {
     const newErrors = {};
+    const commonPasswords = ['password', '123456', '12345678', 'qwerty', 'abc123'];
+
     if (!password) {
       newErrors.password = "New Password is required";
+    } else {
+      // Check for minimum length
+      if (password.length < 8) {
+        newErrors.password = "Password must be at least 8 characters long";
+      }
+      // Check if password is too common
+      if (commonPasswords.includes(password.toLowerCase())) {
+        newErrors.password = "Password is too easy";
+      }
+      // Regex validations for character requirements
+      const uppercaseRegex = /[A-Z]/;
+      const lowercaseRegex = /[a-z]/;
+      const digitRegex = /[0-9]/;
+      const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+
+      if (!uppercaseRegex.test(password)) {
+        newErrors.password = "Password must include at least one uppercase letter";
+      }
+      if (!lowercaseRegex.test(password)) {
+        newErrors.password = "Password must include at least one lowercase letter";
+      }
+      if (!digitRegex.test(password)) {
+        newErrors.password = "Password must include at least one digit";
+      }
+      if (!specialCharRegex.test(password)) {
+        newErrors.password = "Password must include at least one special character";
+      }
     }
+
     if (!confirmPassword) {
       newErrors.confirmPassword = "Confirm Password is required";
-    }
-    if (password && confirmPassword && password !== confirmPassword) {
+    } else if (password && confirmPassword && password !== confirmPassword) {
       newErrors.confirmPassword = "Passwords do not match";
     }
+
     return newErrors;
   };
 
@@ -180,13 +210,13 @@ function Signup({ onSwitchToLogin }) {
     setDisablef(true);
     try {
       // Call your backend to create account, e.g., /api/create-account
-      const response=await axios.post("http://localhost:4000/server/user/signup", { fullName, email, password });
+      const response = await axios.post("http://localhost:4000/server/user/signup", { fullName, email, password });
       toast.success("Account created successfully");
       // Optionally, switch to login or redirect the user.
       // onSwitchToLogin();
-      console.log(response);
+      // console.log(response);
       login(response.data.user);
-      navigate("/dashboard");
+      navigate("/dashboard/add-blog");
     } catch (error) {
       console.error("Account creation error:", error);
       toast.error("Failed to create account. Please try again.");

@@ -2,7 +2,7 @@ import Blog from "../Models/Blog.js";
 import User from "../Models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { sendSignUpSuccessfulEmail } from "./EmailServices.js"; 
+import { sendSignUpSuccessfulEmail } from "./EmailServices.js";
 
 export const signup = async (req, res) => {
   try {
@@ -33,8 +33,10 @@ export const signup = async (req, res) => {
     await sendSignUpSuccessfulEmail({ body: { name: fullName, email } }, res);
     res
       .status(201)
-      .json({ message: "User registered successfully", status: true, token,
-        user: payload, });
+      .json({
+        message: "User registered successfully", status: true, token,
+        user: payload,
+      });
   } catch (error) {
     res.status(500).json({ error: "Internal server error", status: false });
   }

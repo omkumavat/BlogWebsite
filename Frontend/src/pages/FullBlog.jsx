@@ -17,7 +17,6 @@ const BlogDetails = () => {
     );
   }
 
-  // You can use window.location.href as the current page URL
   const blogUrl = window.location.href;
 
   return (
@@ -33,18 +32,15 @@ const BlogDetails = () => {
           <span className="text-lg font-medium">Back</span>
         </button>
 
-        {/* Blog Title */}
         <h1 className="text-4xl font-extrabold text-gray-900 mb-4 leading-tight">
           {blog.title}
         </h1>
 
-        {/* Blog Meta Info */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-gray-600 text-sm sm:text-base mb-6 bg-white p-4">
           <span>📝 <strong>Author:</strong> {blog.author?.name || "Unknown"}</span>
           <span>📅 <strong>Published on:</strong> {new Date(blog.createdAt).toLocaleDateString()}</span>
         </div>
 
-        {/* Share Dropdown */}
         <div className="mb-6 ml-10">
           <ShareBlog blogUrl={blogUrl} blogTitle={blog.title} />
         </div>

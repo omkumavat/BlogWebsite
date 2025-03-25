@@ -49,7 +49,7 @@ function Login({ onSwitchToSignup }) {
       const response =  await axios.post("http://localhost:4000/server/user/login", { email, password });
       toast.success("Login successful!", { id: toastId });
       login(response.data.user);
-      navigate('/');
+      navigate("/dashboard/add-blog");
     } catch (error) {
       console.error("Login error:", error);
       setServerError("Login failed. Please check your credentials and try again.");
