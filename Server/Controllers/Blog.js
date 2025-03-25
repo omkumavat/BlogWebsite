@@ -50,15 +50,16 @@ export const addBlog = async (req, res) => {
 export const deleteBlog = async (req, res) => {
   try {
     const { blogId } = req.params;
+    
     const blog = await Blog.findById(blogId);
     if (!blog) {
       return res.status(404).json({ message: "Blog not found", status: false });
     }
     await User.findByIdAndUpdate(blog.author, { $pull: { blogs: blogId } });
+    
     await Category.findByIdAndUpdate(blog.category, {
       $pull: { blogs: blogId },
     });
-    await Comment.deleteMany({ _id: { $in: blog.comments } });
     await Blog.findByIdAndDelete(blogId);
     res
       .status(200)
