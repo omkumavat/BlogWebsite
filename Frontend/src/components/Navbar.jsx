@@ -7,6 +7,10 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false)
   const navigate = useNavigate()
   const { currentUser, logout } = useAuth()
+  const handleLogout = async () => {
+    await logout();
+    navigate("/");
+  };
 
   return (
     <nav className="fixed w-full bg-gradient-to-r from-purple-900 to-indigo-800 text-white z-50">
@@ -33,7 +37,7 @@ const Navbar = () => {
               Categories
             </a>
             <a
-              href="#"
+              href="/about"
               className="hover:text-purple-300 transition-colors duration-200"
             >
               About
@@ -52,7 +56,7 @@ const Navbar = () => {
               currentUser ? (
                 <>
                   <button
-                    onClick={() => { logout() }}
+                    onClick={handleLogout}
                     className="bg-purple-500 hover:bg-purple-600 px-4 py-2 rounded-full flex items-center space-x-2 transition-colors duration-200">
                     <User className="h-5 w-5" />
                     <span>LogOut</span>
@@ -103,7 +107,7 @@ const Navbar = () => {
                 Categories
               </a>
               <a
-                href="#"
+                href="/about"
                 className="block px-3 py-2 rounded-md hover:bg-purple-800"
               >
                 About
@@ -122,7 +126,7 @@ const Navbar = () => {
                 currentUser ? (
                   <>
                     <button
-                      onClick={() => { logout() }}
+                      onClick={handleLogout}
                       className="bg-purple-500 hover:bg-purple-600 px-4 py-2 rounded-full flex items-center space-x-2 transition-colors duration-200">
                       <User className="h-5 w-5" />
                       <span>LogOut</span>

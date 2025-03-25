@@ -8,6 +8,7 @@ import AddBlog from "./Dashboard/AddBlog"
 import MyBlogs from "./Dashboard/MyBlogs"
 import CategoryPage from "./pages/CategoryPage";
 import FullBlog from './pages/FullBlog';
+import About from "./pages/About"
 
 function App() {
   const Navigate = useNavigate();
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<AuthForm />} />
+        <Route path="/about" element={<About />} />
         <Route path="/blog/categories" element={<Categories />} />
         <Route path="/blog/categories/:catname" element={<CategoryPage />} />
         <Route path="/blog/:name" element={<FullBlog />} />

@@ -162,10 +162,10 @@ const Categories = () => {
             </div>
           </div>
         </div>
-
+{/* 
         <div className="flex justify-center items-center mt-10 -mb-5">
           <SearchBar />
-        </div>
+        </div> */}
 
         {/* Categories Grid */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
