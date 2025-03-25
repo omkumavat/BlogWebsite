@@ -22,11 +22,10 @@ function App() {
         <Route path="/blog/categories/:catname" element={<CategoryPage />} />
         <Route path="/blog/:name" element={<FullBlog />} />
         <Route path="/dashboard" element={<Dashboard />}>
-          <Route index element={<Navigate to="add-blog" replace />} />
-          <Route path="add-blog" element={<AddBlog />} />
-          <Route path="my-blogs" element={<MyBlogs />} />
+        <Route index element={<Navigate to="add-blog" replace />} />
+        <Route path="add-blog" element={<AddBlog />} />
+        <Route path="my-blogs" element={<MyBlogs />} />
         </Route>
-
       </Routes>
     </>
   )

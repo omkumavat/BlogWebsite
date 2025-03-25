@@ -2,7 +2,6 @@ import Blog from "../Models/Blog.js";
 import User from "../Models/User.js";
 import Category from "../Models/Category.js";
 
-
 export const addBlog = async (req, res) => {
   try {
     const { title, content, authorid, categoryid } = req.body;

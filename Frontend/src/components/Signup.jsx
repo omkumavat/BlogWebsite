@@ -186,7 +186,7 @@ function Signup({ onSwitchToLogin }) {
       // onSwitchToLogin();
       console.log(response);
       login(response.data.user);
-      navigate("/dashboard");
+      navigate("/");
     } catch (error) {
       console.error("Account creation error:", error);
       toast.error("Failed to create account. Please try again.");
