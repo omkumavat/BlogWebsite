@@ -17,7 +17,7 @@ import {
     Film,
     Trophy
 } from "lucide-react";
-import { useLocation, useParams, Link } from "react-router-dom";
+import { useLocation, useParams, Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -153,6 +153,7 @@ function CategoryPage() {
 
     const [blogs, setBlogs] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const navigate=useNavigate();
 
     // Find category info based on the catname param.
     const categoryInfo =
@@ -262,9 +263,12 @@ function CategoryPage() {
                                                 </span>
                                             </div>
                                             {isTruncated && (
-                                                <Link to={`/blog/${blog._id}`} className="text-blue-600 hover:text-blue-800 inline-block mt-2">
+                                                <button className="text-blue-600 hover:text-blue-800 inline-block mt-2"
+                                                onClick={()  => {
+                                                    navigate(`/blog/${blog._id}`,{state:{blog}})
+                                                }}>
                                                     Read More →
-                                                </Link>
+                                                </button>
                                             )}
                                         </div>
                                     </div>

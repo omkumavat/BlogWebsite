@@ -27,12 +27,6 @@ const Navbar = () => {
               Home
             </a>
             <a
-              href="#"
-              className="hover:text-purple-300 transition-colors duration-200"
-            >
-              Articles
-            </a>
-            <a
               href="/blog/categories"
               className="hover:text-purple-300 transition-colors duration-200"
             >
@@ -101,12 +95,6 @@ const Navbar = () => {
                 className="block px-3 py-2 rounded-md hover:bg-purple-800"
               >
                 Home
-              </a>
-              <a
-                href="#"
-                className="block px-3 py-2 rounded-md hover:bg-purple-800"
-              >
-                Articles
               </a>
               <a
                 href="/blog/categories"
