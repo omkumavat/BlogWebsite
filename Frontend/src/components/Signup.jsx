@@ -195,7 +195,6 @@ function Signup({ onSwitchToLogin }) {
       setDisablef(false);
     }
   };
-
   const renderSignupStep = () => {
     switch (signupStep) {
       case "initial":
