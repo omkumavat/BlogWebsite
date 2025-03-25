@@ -19,6 +19,7 @@ function Signup({ onSwitchToLogin }) {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const [disablf, setDisablef] = useState(false);
 
   // Countdown timer effect for OTP step.
   useEffect(() => {
@@ -94,11 +95,11 @@ function Signup({ onSwitchToLogin }) {
     }
     setErrors({});
     setLoading(true);
-    // Generate OTP and call backend to send OTP to the provided email.
+    setDisablef(true);
     const otpValue = generateOtp();
     try {
       // Call your backend endpoint, e.g., /api/send-otp
-      await axios.post("", { fullName, email, otp: otpValue });
+      await axios.post("http://localhost:4000/server/user/send-otp", { name: fullName, email, otp: otpValue });
       toast.success("OTP has been sent to your email");
       setTimer(120);
       setOtpAttempts(3);
@@ -108,6 +109,7 @@ function Signup({ onSwitchToLogin }) {
       toast.error("Failed to send OTP. Please try again.");
     } finally {
       setLoading(false);
+      setDisablef(false);
     }
   };
 
@@ -132,6 +134,15 @@ function Signup({ onSwitchToLogin }) {
   };
 
   const handleOtpVerify = () => {
+
+    if (timer <= 0) {
+      toast.error("OTP expired. Please try again.");
+      setFullName("");
+      setEmail("")
+      setSignupStep("initial");
+      return;
+    }
+
     const validationErrors = validateOtpStep();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -149,7 +160,6 @@ function Signup({ onSwitchToLogin }) {
         toast.error(`Incorrect OTP. You have ${attemptsLeft} attempt(s) left.`);
       } else {
         toast.error("No attempts left. Please try again.");
-        // Optionally, you can reset to the initial step or allow a resend.
         setSignupStep("initial");
       }
     }
@@ -163,9 +173,10 @@ function Signup({ onSwitchToLogin }) {
     }
     setErrors({});
     setLoading(true);
+    setDisablef(true);
     try {
       // Call your backend to create account, e.g., /api/create-account
-      await axios.post("/api/create-account", { fullName, email, password });
+      await axios.post("http://localhost:4000/server/user/signup", { fullName, email, password });
       toast.success("Account created successfully");
       // Optionally, switch to login or redirect the user.
       onSwitchToLogin();
@@ -174,6 +185,7 @@ function Signup({ onSwitchToLogin }) {
       toast.error("Failed to create account. Please try again.");
     } finally {
       setLoading(false);
+      setDisablef(false);
     }
   };
 
@@ -189,6 +201,7 @@ function Signup({ onSwitchToLogin }) {
               <div className="relative">
                 <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <input
+                  disabled={disablf}
                   type="text"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
@@ -207,6 +220,7 @@ function Signup({ onSwitchToLogin }) {
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <input
+                  disabled={disablf}
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -282,6 +296,7 @@ function Signup({ onSwitchToLogin }) {
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <input
+                  disabled={disablf}
                   type={showNewPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -311,6 +326,7 @@ function Signup({ onSwitchToLogin }) {
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <input
+                  disabled={disablf}
                   type={showConfirmPassword ? "text" : "password"}
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}

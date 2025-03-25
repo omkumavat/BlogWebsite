@@ -11,12 +11,11 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  // Check if 'Users' exists in localStorage before attempting to parse it
   const initialUser = (() => {
-    const storedUser = localStorage.getItem('Users');
-    if (storedUser) {
+    const storedUser = localStorage.getItem('UsersBlog');
+    if (storedUser && storedUser !== "undefined") {
       try {
-        return JSON.parse(storedUser); // Only parse if storedUser is not null or undefined
+        return JSON.parse(storedUser);
       } catch (error) {
         console.error('Error parsing user data from localStorage', error);
         return null;
@@ -29,20 +28,20 @@ export const AuthProvider = ({ children }) => {
 
   const login = (user) => {
     setCurrentUser(user);
-    localStorage.setItem('Users', JSON.stringify(user)); // Save user to localStorage
+    localStorage.setItem('UsersBlog', JSON.stringify(user));
   };
 
   const logout = () => {
     setCurrentUser(null);
-    localStorage.removeItem('Users'); // Remove user data from localStorage
+    localStorage.removeItem('UsersBlog');
   };
 
   const updateProfile = (updatedUser) => {
     setCurrentUser((prevUser) => {
       if (JSON.stringify(prevUser) === JSON.stringify(updatedUser)) {
-        return prevUser; // Prevent unnecessary updates
+        return prevUser;
       }
-      localStorage.setItem("Users", JSON.stringify(updatedUser));
+      localStorage.setItem("UsersBlog", JSON.stringify(updatedUser));
       return updatedUser;
     });
   };
@@ -56,4 +55,3 @@ export const AuthProvider = ({ children }) => {
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
-

@@ -5,7 +5,7 @@ import AuthForm from "./pages/AuthForm"
 import Categories from "./pages/Categories"
 
 function App() {
- 
+  // localStorage.removeItem('BlogUsers');
   return (
      <>
           <Routes>
