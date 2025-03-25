@@ -1,7 +1,6 @@
 import Blog from "../Models/Blog.js";
 import User from "../Models/User.js";
 import Category from "../Models/Category.js";
-import Comment from "../Models/Comment.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -114,7 +113,6 @@ export const getUserBlogs = async (req, res) => {
     const blogs = await Blog.find({ author: userId })
       .populate("author", "name email")
       .populate("category", "name")
-      .populate("comments");
     res.status(200).json({ message: "User blogs fetched successfully", status: true, blogs });
   } catch (error) {
     console.error("Error fetching user blogs:", error);

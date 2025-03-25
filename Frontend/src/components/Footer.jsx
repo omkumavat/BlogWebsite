@@ -26,19 +26,19 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://facebook.com"
                 className="hover:text-purple-300 transition-colors duration-200"
               >
                 <Facebook className="h-6 w-6" />
               </a>
               <a
-                href="#"
+                href="https://twitter.com"
                 className="hover:text-purple-300 transition-colors duration-200"
               >
                 <Twitter className="h-6 w-6" />
               </a>
               <a
-                href="#"
+                href="https://instagram.com"
                 className="hover:text-purple-300 transition-colors duration-200"
               >
                 <Instagram className="h-6 w-6" />
@@ -52,7 +52,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="#"
+                  href="/"
                   className="hover:text-purple-300 transition-colors duration-200"
                 >
                   Home
@@ -60,15 +60,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
-                  className="hover:text-purple-300 transition-colors duration-200"
-                >
-                  Featured Articles
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
+                  href="/blog/categories"
                   className="hover:text-purple-300 transition-colors duration-200"
                 >
                   Categories
@@ -76,15 +68,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
-                  className="hover:text-purple-300 transition-colors duration-200"
-                >
-                  Write for Us
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
+                  href="/about"
                   className="hover:text-purple-300 transition-colors duration-200"
                 >
                   About Us
@@ -99,7 +83,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="#"
+                  href="/blog/categories/technology"
                   className="hover:text-purple-300 transition-colors duration-200"
                 >
                   Technology
@@ -107,7 +91,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/blog/categories/lifestyle-wellness"
                   className="hover:text-purple-300 transition-colors duration-200"
                 >
                   Lifestyle
@@ -115,26 +99,26 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/blog/categories/travel-adventure"
                   className="hover:text-purple-300 transition-colors duration-200"
                 >
-                  Travel
+                  Travel & Adventure
                 </a>
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/blog/categories/food-cuisine"
                   className="hover:text-purple-300 transition-colors duration-200"
                 >
-                  Food
+                  Food &Cuisine
                 </a>
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/blog/categories/sports-recreation"
                   className="hover:text-purple-300 transition-colors duration-200"
                 >
-                  Health
+                  Sports and Recreation
                 </a>
               </li>
             </ul>
@@ -150,11 +134,11 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-purple-300" />
-                <span>+1 (555) 123-4567</span>
+                <span>+91 8767729499 </span>
               </li>
               <li className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 text-purple-300" />
-                <span>123 Blog Street, Content City</span>
+                <span>Pict Pune</span>
               </li>
             </ul>
           </div>
