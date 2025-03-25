@@ -318,7 +318,7 @@ const Home = ()  => {
           </h2>
           <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
             Join thousands of writers who have already found their voice on
-            BlogVerse.
+            QuickQuill.
           </p>
           <button className="bg-white text-purple-900 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200 transform hover:scale-105">
             Start Writing Today
