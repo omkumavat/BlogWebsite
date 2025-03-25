@@ -62,10 +62,10 @@ export const sendSignUpSuccessfulEmail = async (req, res) => {
     try {
         await transporter.sendMail(mailOptions);
         console.log("OTP email sent successfully.");
-        res.status(200).json({ message: "Email sent successfully" });
+        // res.status(200).json({ message: "Email sent successfully" });
     } catch (error) {
         console.error("Error sending OTP email:", error);
-        res.status(500).json({ error: "Failed to send email" });
+        // res.status(500).json({ error: "Failed to send email" });
     }
 };
 

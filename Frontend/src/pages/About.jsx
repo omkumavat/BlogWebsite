@@ -20,7 +20,7 @@ const teamMembers = [
     name: "Om Kumavat",
     role: "Frontend Developer",
     bio: "Full-stack developer having  experience in building scalable web applications.",
-    image: "images/art.jpg",
+    image: "images/omphoto.jpg",
     social: {
       github: "https://github.com/omkumavat",
       linkedin: "https://www.linkedin.com/in/om-kumavat-a34296258/",

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { ArrowRight, Mail, Lock, User, Eye, EyeOff } from "lucide-react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider";
 
 function Signup({ onSwitchToLogin }) {
   // Steps: "initial" (collect name & email), "otp" (verify OTP), "password" (set password)
@@ -20,6 +22,8 @@ function Signup({ onSwitchToLogin }) {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [disablf, setDisablef] = useState(false);
+  const navigate = useNavigate();
+  const {login}=useAuth();
 
   // Countdown timer effect for OTP step.
   useEffect(() => {
@@ -176,10 +180,13 @@ function Signup({ onSwitchToLogin }) {
     setDisablef(true);
     try {
       // Call your backend to create account, e.g., /api/create-account
-      await axios.post("http://localhost:4000/server/user/signup", { fullName, email, password });
+      const response=await axios.post("http://localhost:4000/server/user/signup", { fullName, email, password });
       toast.success("Account created successfully");
       // Optionally, switch to login or redirect the user.
-      onSwitchToLogin();
+      // onSwitchToLogin();
+      console.log(response);
+      login(response.data.user);
+      navigate("/dashboard");
     } catch (error) {
       console.error("Account creation error:", error);
       toast.error("Failed to create account. Please try again.");

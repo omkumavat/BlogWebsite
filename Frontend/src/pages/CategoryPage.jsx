@@ -208,7 +208,7 @@ function CategoryPage() {
                 <div className="bg-white border-b">
                     <div className="max-w-4xl mx-auto px-4 py-16">
                         <div
-                            className={`text-5xl font-bold mb-4 mt-20 bg-gradient-to-r ${categoryInfo.color} bg-clip-text text-transparent`}
+                            className={`text-5xl font-bold mb-5 mt-20 p-5 bg-gradient-to-r ${categoryInfo.color} bg-clip-text text-transparent`}
                         >
                             {categoryInfo.title}
                         </div>

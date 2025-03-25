@@ -1,8 +1,8 @@
 import Blog from "../Models/Blog.js";
 import User from "../Models/User.js";
-import Category from "../Models/Category.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { sendSignUpSuccessfulEmail } from "./EmailServices.js"; 
 
 export const signup = async (req, res) => {
   try {
@@ -18,10 +18,23 @@ export const signup = async (req, res) => {
       email,
       password: hashedPassword,
     });
+    const payload = { userId: newUser._id, email: newUser.email, name: newUser.name };
+    let token;
+    try {
+      token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "2h" });
+    } catch (jwtError) {
+      console.error("Error signing JWT:", jwtError);
+      return res.status(500).json({
+        message: "Error generating token",
+        status: false,
+      });
+    }
     await newUser.save();
+    await sendSignUpSuccessfulEmail({ body: { name: fullName, email } }, res);
     res
       .status(201)
-      .json({ message: "User registered successfully", status: true });
+      .json({ message: "User registered successfully", status: true, token,
+        user: payload, });
   } catch (error) {
     res.status(500).json({ error: "Internal server error", status: false });
   }
