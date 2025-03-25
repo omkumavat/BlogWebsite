@@ -45,7 +45,7 @@ const AddBlog = () => {
       alert("Please fill in all fields.");
       return;
     }
-  
+
     const blogData = {
       title,
       content: editor.getHTML(), 

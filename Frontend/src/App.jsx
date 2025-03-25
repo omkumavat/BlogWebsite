@@ -16,7 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<AuthForm />} />
         <Route path="/blog/categories" element={<Categories />} />
-        <Route path="/blog/cat" element={<CategoryPage />} />
+        <Route path="/blog/categories/:catname" element={<CategoryPage />} />
         <Route path="/dashboard" element={<Dashboard />}>
           <Route index element={<Navigate to="add-blog" replace />} />
           <Route path="add-blog" element={<AddBlog />} />
