@@ -1,21 +1,31 @@
-import React, { useState } from "react"
-import { useEditor, EditorContent } from "@tiptap/react"
-import StarterKit from "@tiptap/starter-kit"
+import React, { useState, useEffect } from "react";
+import { useEditor, EditorContent } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import axios from "axios";
+import {useAuth} from '../context/AuthProvider'
 
-const categories = [
-  "Technology",
-  "Travel",
-  "Food",
-  "Lifestyle",
-  "Fashion",
-  "Health",
-  "Business",
-  "Education"
-]
 
 const AddBlog = () => {
-  const [title, setTitle] = useState("")
-  const [category, setCategory] = useState("")
+  const {currentUser}=useAuth();
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("");
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:4000/server/category/getcategoryname"
+        );
+        console.log(res.data.categories);
+        setCategories(res.data.categories);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   const editor = useEditor({
     extensions: [StarterKit],
@@ -23,20 +33,43 @@ const AddBlog = () => {
     editorProps: {
       attributes: {
         class:
-          "prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none"
-      }
-    }
-  })
+          "prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none",
+      },
+    },
+  });
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    // Handle form submission
-    console.log({
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    if (!title || !editor || !editor.getHTML() || !category) {
+      alert("Please fill in all fields.");
+      return;
+    }
+  
+    const blogData = {
       title,
-      category,
-      content: editor?.getHTML()
-    })
-  }
+      content: editor.getHTML(), 
+      authorid: currentUser.userId, 
+      categoryid: category, 
+    };
+  
+    try {
+      const res = await axios.post("http://localhost:4000/server/blog/addblog", blogData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      console.log("Blog added successfully:", res.data);
+      alert("Blog added successfully!");
+      setTitle("");
+      setCategory("");
+      editor.commands.setContent(""); 
+    } catch (error) {
+      console.error("Error adding blog:", error);
+      alert("Failed to add blog. Please try again.");
+    }
+  };
 
   return (
     <div className="max-w-4xl mx-auto p-6">
@@ -54,7 +87,7 @@ const AddBlog = () => {
             type="text"
             id="title"
             value={title}
-            onChange={e => setTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             placeholder="Enter blog title"
           />
@@ -70,13 +103,13 @@ const AddBlog = () => {
           <select
             id="category"
             value={category}
-            onChange={e => setCategory(e.target.value)}
+            onChange={(e) => setCategory(e.target.value)}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
             <option value="">Select a category</option>
-            {categories.map(cat => (
-              <option key={cat} value={cat.toLowerCase()}>
-                {cat}
+            {categories.map((cat) => (
+              <option key={cat._id} value={cat._id}>
+                {cat.name}
               </option>
             ))}
           </select>
@@ -99,7 +132,7 @@ const AddBlog = () => {
         </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default AddBlog
+export default AddBlog;

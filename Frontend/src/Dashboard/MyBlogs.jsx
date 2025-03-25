@@ -28,7 +28,7 @@ const MyBlogs = () => {
                 // Assuming response.data.blogs is the array of blog posts
                 setBlogs(response.data.blogs);
                 console.log(response.data.blogs);
-                
+
             } catch (error) {
                 console.error("Error fetching blogs:", error);
                 toast.error("Failed to fetch blogs.");
@@ -54,9 +54,9 @@ const MyBlogs = () => {
         }
         try {
             // Replace with your actual delete endpoint, e.g., DELETE /blogs/:id
-            await axios.delete(`http://localhost:4000/server/user/getuserblogs/${selectedBlog._id}`);
+            await axios.delete(`http://localhost:4000/server/blog/delete/${selectedBlog._id}`);
             toast.success("Blog deleted successfully");
-            setBlogs((prev) => prev.filter((b) => b.id !== selectedBlog.id));
+            setBlogs((prev) => prev.filter((b) => b._id !== selectedBlog._id));
             setDeleteModalOpen(false);
         } catch (error) {
             console.error("Delete blog error:", error);

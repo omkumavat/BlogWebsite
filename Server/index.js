@@ -20,6 +20,7 @@ app.use(express.urlencoded({ limit: '1gb', extended: true }));
 
 app.use('/server/user',User);
 app.use('/server/category',Category);
+app.use('/server/blog',Blog);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
