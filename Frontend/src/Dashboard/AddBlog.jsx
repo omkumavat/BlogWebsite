@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useEditor, EditorContent } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import axios from "axios";
-import {useAuth} from '../context/AuthProvider'
-
+import { useAuth } from "../context/AuthProvider";
 
 const AddBlog = () => {
-  const {currentUser}=useAuth();
+  const { currentUser } = useAuth();
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [categories, setCategories] = useState([]);
+  const [content, setContent] = useState("");
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -27,44 +27,37 @@ const AddBlog = () => {
     fetchCategories();
   }, []);
 
-  const editor = useEditor({
-    extensions: [StarterKit],
-    content: "",
-    editorProps: {
-      attributes: {
-        class:
-          "prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none",
-      },
-    },
-  });
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    if (!title || !editor || !editor.getHTML() || !category) {
+
+    if (!title || !content || !category) {
       alert("Please fill in all fields.");
       return;
     }
 
     const blogData = {
       title,
-      content: editor.getHTML(), 
-      authorid: currentUser.userId, 
-      categoryid: category, 
+      content, // rich text HTML from ReactQuill
+      authorid: currentUser.userId,
+      categoryid: category,
     };
-  
+
     try {
-      const res = await axios.post("http://localhost:4000/server/blog/addblog", blogData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-  
+      const res = await axios.post(
+        "http://localhost:4000/server/blog/addblog",
+        blogData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
       console.log("Blog added successfully:", res.data);
       alert("Blog added successfully!");
       setTitle("");
       setCategory("");
-      editor.commands.setContent(""); 
+      setContent("");
     } catch (error) {
       console.error("Error adding blog:", error);
       alert("Failed to add blog. Please try again.");
@@ -120,7 +113,12 @@ const AddBlog = () => {
             Content
           </label>
           <div className="min-h-[300px] border border-gray-300 rounded-lg p-4">
-            <EditorContent editor={editor} />
+            <ReactQuill
+              value={content}
+              onChange={setContent}
+              theme="snow"
+              placeholder="Write your blog content here..."
+            />
           </div>
         </div>
 

@@ -5,8 +5,8 @@ import { useAuth } from "../context/AuthProvider"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false)
-  const navigate=useNavigate()
-  const {currentUser,logout}=useAuth()
+  const navigate = useNavigate()
+  const { currentUser, logout } = useAuth()
 
   return (
     <nav className="fixed w-full bg-gradient-to-r from-purple-900 to-indigo-800 text-white z-50">
@@ -44,27 +44,37 @@ const Navbar = () => {
             >
               About
             </a>
-           {
-             currentUser ? (
-              <>
-              <button
-           onClick={() => {logout()}}
-            className="bg-purple-500 hover:bg-purple-600 px-4 py-2 rounded-full flex items-center space-x-2 transition-colors duration-200">
-             <User className="h-5 w-5" />
-             <span>LogOut</span>
-           </button>
-             </>
-             ) : (
-              <>
-               <button
-            onClick={() => {navigate('/login')}}
-             className="bg-purple-500 hover:bg-purple-600 px-4 py-2 rounded-full flex items-center space-x-2 transition-colors duration-200">
-              <User className="h-5 w-5" />
-              <span>Sign In</span>
-            </button>
-              </>
-             )
-           }
+            {
+              currentUser && (
+                <a
+                  href="/dashboard"
+                 className="hover:text-purple-300 transition-colors duration-200"
+                >
+                  DashBoard
+                </a>
+              )
+            }
+            {
+              currentUser ? (
+                <>
+                  <button
+                    onClick={() => { logout() }}
+                    className="bg-purple-500 hover:bg-purple-600 px-4 py-2 rounded-full flex items-center space-x-2 transition-colors duration-200">
+                    <User className="h-5 w-5" />
+                    <span>LogOut</span>
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    onClick={() => { navigate('/login') }}
+                    className="bg-purple-500 hover:bg-purple-600 px-4 py-2 rounded-full flex items-center space-x-2 transition-colors duration-200">
+                    <User className="h-5 w-5" />
+                    <span>Sign In</span>
+                  </button>
+                </>
+              )
+            }
           </div>
 
           {/* Mobile menu button */}
@@ -111,26 +121,36 @@ const Navbar = () => {
                 About
               </a>
               {
-             currentUser ? (
-              <>
-              <button
-           onClick={() => {logout()}}
-            className="bg-purple-500 hover:bg-purple-600 px-4 py-2 rounded-full flex items-center space-x-2 transition-colors duration-200">
-             <User className="h-5 w-5" />
-             <span>LogOut</span>
-           </button>
-             </>
-             ) : (
-              <>
-               <button
-            onClick={() => {navigate('/login')}}
-             className="bg-purple-500 hover:bg-purple-600 px-4 py-2 rounded-full flex items-center space-x-2 transition-colors duration-200">
-              <User className="h-5 w-5" />
-              <span>Sign In</span>
-            </button>
-              </>
-             )
-           }
+                currentUser && (
+                  <a
+                    href="/dashboard"
+                    className="hover:text-purple-300 transition-colors duration-200"
+                  >
+                    DashBoard
+                  </a>
+                )
+              }
+              {
+                currentUser ? (
+                  <>
+                    <button
+                      onClick={() => { logout() }}
+                      className="bg-purple-500 hover:bg-purple-600 px-4 py-2 rounded-full flex items-center space-x-2 transition-colors duration-200">
+                      <User className="h-5 w-5" />
+                      <span>LogOut</span>
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => { navigate('/login') }}
+                      className="bg-purple-500 hover:bg-purple-600 px-4 py-2 rounded-full flex items-center space-x-2 transition-colors duration-200">
+                      <User className="h-5 w-5" />
+                      <span>Sign In</span>
+                    </button>
+                  </>
+                )
+              }
             </div>
           </div>
         )}
