@@ -31,7 +31,7 @@ const Navbar = () => {
               Articles
             </a>
             <a
-              href="#"
+              href="/blog/categories"
               className="hover:text-purple-300 transition-colors duration-200"
             >
               Categories
@@ -82,7 +82,7 @@ const Navbar = () => {
                 Articles
               </a>
               <a
-                href="#"
+                href="/blog/categories"
                 className="block px-3 py-2 rounded-md hover:bg-purple-800"
               >
                 Categories
