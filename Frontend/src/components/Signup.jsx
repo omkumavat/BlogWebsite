@@ -212,9 +212,7 @@ function Signup({ onSwitchToLogin }) {
       // Call your backend to create account, e.g., /api/create-account
       const response = await axios.post("http://localhost:4000/server/user/signup", { fullName, email, password });
       toast.success("Account created successfully");
-      // Optionally, switch to login or redirect the user.
-      // onSwitchToLogin();
-      // console.log(response);
+
       login(response.data.user);
       navigate("/dashboard/add-blog");
     } catch (error) {
