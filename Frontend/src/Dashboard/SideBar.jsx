@@ -9,11 +9,11 @@ const Sidebar = ({ isOpen, toggleSidebar, setCurrentView, currentView }) => {
 
   return (
     <div
-      className={`fixed lg:static inset-y-0 left-0 z-30 w-64 bg-blue-900 text-white transform transition-transform duration-300 ease-in-out ${
+      className={`fixed lg:static inset-y-0 left-0 z-30 w-64 bg-blue-900 text-white transform transition-transform mt-5 duration-300 ease-in-out ${
         isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
       }`}
     >
-      <div className="flex items-center justify-between p-4 border-b border-blue-800">
+      <div className="flex items-center justify-between mt-20 p-4 border-b border-blue-800">
         <h2 className="text-xl font-bold">Dashboard</h2>
         <button
           onClick={toggleSidebar}

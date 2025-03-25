@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { Outlet, useNavigate } from "react-router-dom"
 import Sidebar from "./SideBar"
 import { Menu } from "lucide-react"
+import Navbar from "../components/Navbar"
 
 function Dashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -16,12 +17,14 @@ function Dashboard() {
   }
 
   return (
+    <>
+    <Navbar/>
     <div className="min-h-screen bg-gray-50">
       {/* Mobile Header */}
       <div className="lg:hidden bg-white shadow-sm p-4">
         <button
           onClick={toggleSidebar}
-          className="text-gray-600 hover:text-gray-900"
+          className="text-gray-600 hover:text-gray-900 mt-20"
         >
           <Menu className="h-6 w-6" />
         </button>
@@ -37,7 +40,7 @@ function Dashboard() {
         />
 
         {/* Main Content */}
-        <main className="flex-1 p-0 lg:p-8">
+        <main className="flex-1 p-0 lg:p-8 mt-20">
           {/* Overlay for mobile sidebar */}
           {isSidebarOpen && (
             <div
@@ -53,6 +56,7 @@ function Dashboard() {
         </main>
       </div>
     </div>
+    </>
   )
 }
 

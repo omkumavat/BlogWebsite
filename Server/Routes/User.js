@@ -8,6 +8,6 @@ router.post("/signup", signup);
 router.post("/login", login);
 router.post("/send-otp", sendOTPEmail);
 router.post("/signup-success", sendSignUpSuccessfulEmail);
-router.get('/getuserblogs',getUserBlogs);
+router.get('/getuserblogs/:userId',getUserBlogs);
 
 export default router;
