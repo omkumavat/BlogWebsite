@@ -29,7 +29,7 @@ app.get("/s", (req, res) => {
   res.render("SignupOTP", { name: "BlogWeb",otp:"123456"});
 });
 
-app.get('/',(req,res)=>{
+app.get('/  ',(req,res)=>{
     res.send("hello");
 })
 
