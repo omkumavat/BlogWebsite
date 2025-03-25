@@ -1,4 +1,4 @@
-import User from "../Model/User.js";
+import User from "../Models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -50,3 +50,4 @@ export const login = async (req, res) => {
     res.status(500).json({ error: "Internal server error", status: false });
   }
 };
+
