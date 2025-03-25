@@ -9,7 +9,6 @@ import User from './Routes/User.js';
 import Category from './Routes/Category.js';
 import Blog from './Routes/Blog.js';
 
-
 const app=express();
 const PORT=process.env.PORT||4000;
 connectDB();
