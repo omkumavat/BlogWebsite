@@ -1,7 +1,7 @@
-import React from "react"
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
-import { motion } from "framer-motion"
+import React from "react";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import { motion } from "framer-motion";
 import {
   ArrowRight,
   Pen,
@@ -18,12 +18,22 @@ import {
   Heart,
   Coffee,
   Star,
-  Laptop
-} from "lucide-react"
-import { useNavigate } from "react-router-dom"
+  Laptop,
+  ShieldCheck,
+} from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider";
 
-const Home = ()  => {
-  const navigate=useNavigate()
+const Home = () => {
+  const navigate = useNavigate();
+  const { currentUser } = useAuth();
+  const handleClick = () => {
+    if (currentUser) {
+      navigate("/dashboard");
+    } else {
+      navigate("/login");
+    }
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
@@ -42,8 +52,11 @@ const Home = ()  => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-delay-2">
                 <button
-                onClick={() =>  {navigate('/blog/categories')}}
-                 className="bg-purple-500 hover:bg-purple-600 px-8 py-3 rounded-full flex items-center justify-center space-x-2 transition-all duration-300 transform hover:scale-105">
+                  onClick={() => {
+                    navigate("/blog/categories");
+                  }}
+                  className="bg-purple-500 hover:bg-purple-600 px-8 py-3 rounded-full flex items-center justify-center space-x-2 transition-all duration-300 transform hover:scale-105"
+                >
                   <span>Start Reading</span>
                   <ArrowRight className="h-5 w-5" />
                 </button>
@@ -85,8 +98,8 @@ const Home = ()  => {
                   </h3>
                   <p className="text-gray-600 mb-6">
                     Write with confidence using our intuitive editor. Format
-                    your content beautifully, add images, embed media, and
-                    create engaging stories that captivate your readers.
+                    your content beautifully and create engaging stories that
+                    captivate your readers.
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-center text-gray-700">
@@ -94,12 +107,12 @@ const Home = ()  => {
                       Rich text formatting
                     </li>
                     <li className="flex items-center text-gray-700">
-                      <Globe2 className="h-5 w-5 text-purple-500 mr-3" />
-                      Multi-language support
+                      <Sparkles className="h-5 w-5 text-purple-500 mr-3" />
+                      Secure and private content
                     </li>
                     <li className="flex items-center text-gray-700">
-                      <MessageSquare className="h-5 w-5 text-purple-500 mr-3" />
-                      Collaborative editing
+                      <Sparkles className="h-5 w-5 text-purple-500 mr-3" />
+                      Fast and reliable performance
                     </li>
                   </ul>
                 </div>
@@ -175,9 +188,9 @@ const Home = ()  => {
                 </h3>
                 <ul className="space-y-3 text-gray-300">
                   <li>• Unlimited blog posts</li>
-                  <li>• Custom domains</li>
                   <li>• Advanced formatting</li>
-                  <li>• Media integration</li>
+                  <li>• Secure and private content</li>
+                  
                 </ul>
               </div>
             </div>
@@ -188,7 +201,6 @@ const Home = ()  => {
                 <Users className="h-10 w-10 text-purple-300 mb-6" />
                 <h3 className="text-xl font-bold mb-4">Grow Your Audience</h3>
                 <ul className="space-y-3 text-gray-300">
-                  <li>• SEO optimization</li>
                   <li>• Social sharing</li>
                   <li>• Newsletter integration</li>
                   <li>• Analytics dashboard</li>
@@ -204,7 +216,6 @@ const Home = ()  => {
                   Monetize Your Content
                 </h3>
                 <ul className="space-y-3 text-gray-300">
-                  <li>• Premium subscriptions</li>
                   <li>• Sponsored content tools</li>
                   <li>• Affiliate marketing</li>
                   <li>• Direct tip system</li>
@@ -223,18 +234,38 @@ const Home = ()  => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Powerful Features</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Powerful Features
+            </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Everything you need to create, grow, and monetize your blog in one place.
+              Everything you need to create, grow, and monetize your blog in one
+              place.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: <Rocket className="h-8 w-8" />, title: "Quick Start", desc: "Get your blog up and running in minutes" },
-              { icon: <Target className="h-8 w-8" />, title: "SEO Tools", desc: "Optimize your content for search engines" },
-              { icon: <TrendingUp className="h-8 w-8" />, title: "Analytics", desc: "Track your growth and engagement" },
-              { icon: <Heart className="h-8 w-8" />, title: "Community", desc: "Connect with like-minded writers" },
+              {
+                icon: <Rocket className="h-8 w-8" />,
+                title: "Quick Start",
+                desc: "Get your blog up and running in minutes",
+              },
+              {
+                icon: <Target className="h-8 w-8" />,
+                title: "Easy Share",
+                desc: "Share your content With Your Friend ",
+              },
+              {
+                icon: <TrendingUp className="h-8 w-8" />,
+                title: "Dashboard",
+                desc: "Track your Blogs and Update and Delate",
+              },
+              {
+                icon: <ShieldCheck className="h-8 w-8 text-green-500" />,
+                title: "Security",
+                desc: "Your data is encrypted and protected ensuring a safe and secure blogging experience.",
+              }
+              
             ].map((feature, index) => (
               <motion.div
                 key={index}
@@ -244,7 +275,9 @@ const Home = ()  => {
                 className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
               >
                 <div className="text-purple-600 mb-4">{feature.icon}</div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{feature.title}</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  {feature.title}
+                </h3>
                 <p className="text-gray-600">{feature.desc}</p>
               </motion.div>
             ))}
@@ -263,17 +296,20 @@ const Home = ()  => {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6 }}
                 >
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4">Start Your Blogging Journey Today</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                    Start Your Blogging Journey Today
+                  </h2>
                   <p className="text-gray-300 text-lg mb-8">
-                    Join our community of writers and start sharing your stories with the world.
+                    Join our community of writers and start sharing your stories
+                    with the world.
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <button
-                    onClick={() =>  {navigate('/login')}}
-                     className="bg-white text-purple-900 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200">
+                      onClick={handleClick}
+                      className="bg-white text-purple-900 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200"
+                    >
                       Get Started Free
                     </button>
-                    
                   </div>
                 </motion.div>
               </div>
@@ -287,17 +323,23 @@ const Home = ()  => {
                   <div className="space-y-4">
                     <div className="bg-white/10 backdrop-blur p-4 rounded-xl">
                       <Coffee className="h-8 w-8 text-purple-300 mb-2" />
-                      <h4 className="text-white font-semibold">Write Anywhere</h4>
+                      <h4 className="text-white font-semibold">
+                        Write Anywhere
+                      </h4>
                     </div>
                     <div className="bg-white/10 backdrop-blur p-4 rounded-xl">
                       <Star className="h-8 w-8 text-purple-300 mb-2" />
-                      <h4 className="text-white font-semibold">Premium Features</h4>
+                      <h4 className="text-white font-semibold">
+                        Premium Features
+                      </h4>
                     </div>
                   </div>
                   <div className="space-y-4 mt-4">
                     <div className="bg-white/10 backdrop-blur p-4 rounded-xl">
                       <Users className="h-8 w-8 text-purple-300 mb-2" />
-                      <h4 className="text-white font-semibold">Growing Community</h4>
+                      <h4 className="text-white font-semibold">
+                        Growing Community
+                      </h4>
                     </div>
                     <div className="bg-white/10 backdrop-blur p-4 rounded-xl">
                       <Laptop className="h-8 w-8 text-purple-300 mb-2" />
@@ -321,7 +363,10 @@ const Home = ()  => {
             Join thousands of writers who have already found their voice on
             QuickQuill.
           </p>
-          <button className="bg-white text-purple-900 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200 transform hover:scale-105">
+          <button
+            className="bg-white text-purple-900 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200 transform hover:scale-105"
+            onClick={handleClick}
+          >
             Start Writing Today
           </button>
         </div>
@@ -329,7 +374,7 @@ const Home = ()  => {
 
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

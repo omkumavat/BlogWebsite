@@ -222,35 +222,6 @@ const Categories = () => {
             ))}
           </div>
         </div>
-
-        {/* Newsletter Section */}
-        <div className="bg-white py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              className="bg-gradient-to-r from-purple-900 to-indigo-800 rounded-3xl p-12 text-center text-white"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Stay Updated
-              </h2>
-              <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                Get notified about new articles in your favorite categories.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="px-6 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 flex-grow"
-                />
-                <button className="px-8 py-3 rounded-full bg-white text-purple-900 font-semibold hover:bg-gray-100 transition-colors duration-200">
-                  Subscribe
-                </button>
-              </div>
-            </motion.div>
-          </div>
-        </div>
       </div>
       <Footer />
     </>
