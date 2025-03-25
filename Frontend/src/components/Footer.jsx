@@ -18,7 +18,7 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <BookOpen className="h-8 w-8" />
-              <span className="text-2xl font-bold">BlogVerse</span>
+              <span className="text-2xl font-bold">QuickQuill</span>
             </div>
             <p className="text-gray-300">
               Discover amazing stories, insights, and perspectives from writers
@@ -146,7 +146,7 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-purple-300" />
-                <span>contact@blogverse.com</span>
+                <span>contact@QuickQuill.com</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-purple-300" />
@@ -162,7 +162,7 @@ const Footer = () => {
 
         <div className="mt-12 pt-8 border-t border-purple-700">
           <p className="text-center text-gray-300">
-            © 2024 BlogVerse. All rights reserved.
+            © 2024 QuickQuill. All rights reserved.
           </p>
         </div>
       </div>

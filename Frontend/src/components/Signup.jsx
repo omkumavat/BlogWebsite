@@ -100,7 +100,6 @@ function Signup({ onSwitchToLogin }) {
       // Call your backend endpoint, e.g., /api/send-otp
       await axios.post("", { fullName, email, otp: otpValue });
       toast.success("OTP has been sent to your email");
-      // Start the OTP timer and reset attempts.
       setTimer(120);
       setOtpAttempts(3);
       setSignupStep("otp");

@@ -13,13 +13,13 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center space-x-2">
             <BookOpen className="h-8 w-8" />
-            <span className="text-2xl font-bold">BlogVerse</span>
+            <span className="text-2xl font-bold">QuickQuill</span>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <a
-              href="#"
+              href="/"
               className="hover:text-purple-300 transition-colors duration-200"
             >
               Home
@@ -31,7 +31,7 @@ const Navbar = () => {
               Articles
             </a>
             <a
-              href="#"
+              href="/blog/categories"
               className="hover:text-purple-300 transition-colors duration-200"
             >
               Categories
@@ -70,7 +70,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <a
-                href="#"
+                href="/"
                 className="block px-3 py-2 rounded-md hover:bg-purple-800"
               >
                 Home
@@ -82,7 +82,7 @@ const Navbar = () => {
                 Articles
               </a>
               <a
-                href="#"
+                href="/blog/categories"
                 className="block px-3 py-2 rounded-md hover:bg-purple-800"
               >
                 Categories
