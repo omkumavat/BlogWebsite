@@ -27,7 +27,7 @@ const MyBlogs = () => {
         );
         // Assuming response.data.blogs is the array of blog posts
         setBlogs(response.data.blogs);
-        console.log(response.data.blogs);
+        // console.log(response.data.blogs);
       } catch (error) {
         console.error("Error fetching blogs:", error);
         toast.error("Failed to fetch blogs.");

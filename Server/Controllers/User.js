@@ -44,7 +44,7 @@ export const signup = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    console.log("Request Body:", req.body);
+    // console.log("Request Body:", req.body);
     const { email, password } = req.body;
 
     // Try to find the user.

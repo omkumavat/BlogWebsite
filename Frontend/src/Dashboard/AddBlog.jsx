@@ -17,7 +17,7 @@ const AddBlog = () => {
         const res = await axios.get(
           "http://localhost:4000/server/category/getcategoryname"
         );
-        console.log(res.data.categories);
+        // console.log(res.data.categories);
         setCategories(res.data.categories);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -53,7 +53,7 @@ const AddBlog = () => {
         }
       );
 
-      console.log("Blog added successfully:", res.data);
+      // console.log("Blog added successfully:", res.data);
       alert("Blog added successfully!");
       setTitle("");
       setCategory("");

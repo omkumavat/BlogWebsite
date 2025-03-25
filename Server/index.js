@@ -24,8 +24,8 @@ app.use('/server/blog',Blog);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-console.log(__filename);
-console.log(__dirname);
+// console.log(__filename);
+// console.log(__dirname);
 app.use(express.static(path.join(__dirname, '..', 'src', 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -34,12 +34,12 @@ app.get("/s", (req, res) => {
   res.render("SignupOTP", { name: "BlogWeb",otp:"123456"});
 });
 
-app.get('/  ',(req,res)=>{
+app.get('/',(req,res)=>{
     res.send("hello");
 })
 
-app.listen(PORT,()=>{
-    console.log(`Server is running on Port:${PORT}`);
-})
+// app.listen(PORT,()=>{
+//     console.log(`Server is running on Port:${PORT}`);
+// })
 
-// export default app;
+export default app;
