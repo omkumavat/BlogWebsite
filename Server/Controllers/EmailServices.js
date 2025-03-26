@@ -39,7 +39,7 @@ export const sendOTPEmail = async (req, res) => {
     res.status(200).json({ success: true, message: "Email sent successfully" });
   } catch (error) {
     console.error("Error sending OTP email:", error);
-    res.status(500).json({ error: "Failed to send email" });
+    res.status(500).json({  error });
   }
 };
 
