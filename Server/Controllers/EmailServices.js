@@ -23,7 +23,8 @@ const __dirname = path.dirname(__filename);
 export const sendOTPEmail = async (req, res) => {
   const { name, email, otp } = req.body;
   try {
-    const templatePath = path.join(__dirname, "../views", "SignupOTP.hbs");
+    const templatePath = path.join(__dirname, "views", "SignupOTP.hbs");
+    console.log("Resolved template path:", templatePath);
     const templateSource = fs.readFileSync(templatePath, "utf-8");
     const template = Handlebars.compile(templateSource);
     const htmlContent = template({ name, email, otp });
