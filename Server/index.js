@@ -27,9 +27,9 @@ app.use(express.static(path.join(__dirname, '..', 'src', 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-app.get("/s", (req, res) => {
-  res.render("SignupOTP", { name: "BlogWeb",otp:"123456"});
-});
+// app.get("/s", (req, res) => {
+//   res.render("SignupOTP", { name: "BlogWeb",otp:"123456"});
+// });
 
 app.get('/',(req,res)=>{
     res.send("hello");
