@@ -46,7 +46,7 @@ function Login({ onSwitchToSignup }) {
     const toastId = toast.loading("Signing In...");
     try {
       // Replace this with your actual login endpoint.
-      const response =  await axios.post("https://quickquillbackend.vercel.app/server/user/login", { email, password });
+      const response =  await axios.post("https://quickquill-backend.vercel.app/server/user/login", { email, password });
       toast.success("Login successful!", { id: toastId });
       login(response.data.user);
       navigate("/dashboard/add-blog");

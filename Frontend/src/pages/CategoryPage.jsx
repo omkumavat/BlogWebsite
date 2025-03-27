@@ -172,7 +172,7 @@ function CategoryPage() {
             try {
                 // Adjust this endpoint as per your backend implementation.
                 const response = await fetch(
-                    `https://quickquillbackend.vercel.app/server/category/getcategorybyid/${categoryId}`
+                    `https://quickquill-backend.vercel.app/server/category/getcategorybyid/${categoryId}`
                 );
                 if (!response.ok) {
                     throw new Error("Failed to fetch blogs");
