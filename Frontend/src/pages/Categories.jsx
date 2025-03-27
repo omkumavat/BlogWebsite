@@ -1,12 +1,10 @@
 import React from "react";
-import { motion } from "framer-motion";
 import {
   ArrowRight,
   Utensils,
   Plane,
   Briefcase,
   Heart,
-  Camera,
   Book,
   Music,
   Code,
@@ -15,14 +13,13 @@ import {
 } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import SearchBar from "../components/SearchBar";
 import { useNavigate } from "react-router-dom";
 
 const Categories = () => {
   const categories = [
     {
       title: "Food & Cuisine",
-      name:'food-cuisine',
+      name: "food-cuisine",
       description:
         "Explore recipes, cooking tips, and culinary delights from around the globe.",
       image: "/images/food.jpg",
@@ -40,7 +37,7 @@ const Categories = () => {
       icon: <Plane className="h-8 w-8" />,
       tag: "Trending",
       ID: "67e27afdc0a57517570d0be7",
-      name:'travel-adventure',
+      name: "travel-adventure",
     },
     {
       title: "Business & Finance",
@@ -51,7 +48,7 @@ const Categories = () => {
       icon: <Briefcase className="h-8 w-8" />,
       tag: "Hot",
       ID: "67e27b0cc0a57517570d0bea",
-      name:'Business-finance',
+      name: "Business-finance",
     },
     {
       title: "Lifestyle & Wellness",
@@ -62,7 +59,7 @@ const Categories = () => {
       icon: <Heart className="h-8 w-8" />,
       tag: "Featured",
       ID: "67e27b1dc0a57517570d0bed",
-      name:'lifestyle-wellness',
+      name: "lifestyle-wellness",
     },
     {
       title: "Personal Development",
@@ -73,7 +70,7 @@ const Categories = () => {
       icon: <Book className="h-8 w-8" />,
       tag: "New",
       ID: "67e27b31c0a57517570d0bf0",
-      name:'personaldevelopment',
+      name: "personaldevelopment",
     },
     {
       title: "Education",
@@ -84,7 +81,7 @@ const Categories = () => {
       icon: <Book className="h-8 w-8" />,
       tag: "Popular",
       ID: "67e27b43c0a57517570d0bf3",
-      name:'education',
+      name: "education",
     },
     {
       title: "Arts & Culture",
@@ -95,7 +92,7 @@ const Categories = () => {
       icon: <Music className="h-8 w-8" />,
       tag: "Trending",
       ID: "67e27b54c0a57517570d0bf6",
-      name:'arts-culture',
+      name: "arts-culture",
     },
     {
       title: "Technology",
@@ -106,7 +103,7 @@ const Categories = () => {
       icon: <Code className="h-8 w-8" />,
       tag: "Hot",
       ID: "67e27b61c0a57517570d0bf9",
-      name:'technology',
+      name: "technology",
     },
     {
       title: "Entertainment & Pop Culture",
@@ -117,7 +114,7 @@ const Categories = () => {
       icon: <Film className="h-8 w-8" />,
       tag: "Trending",
       ID: "67e27b6ec0a57517570d0bfc",
-      name:'entertainment-popculture',
+      name: "entertainment-popculture",
     },
     {
       title: "Sports & Recreation",
@@ -128,11 +125,11 @@ const Categories = () => {
       icon: <Trophy className="h-8 w-8" />,
       tag: "Popular",
       ID: "67e27b7ec0a57517570d0bff",
-      name:'sports-recreation',
+      name: "sports-recreation",
     },
   ];
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -142,51 +139,29 @@ const Categories = () => {
         <div className="bg-gradient-to-br from-purple-900 via-indigo-800 to-purple-900 text-white py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <motion.h1
-                className="text-4xl md:text-6xl font-bold mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
+              <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 Explore Our Categories
-              </motion.h1>
-              <motion.p
-                className="text-xl text-gray-300 max-w-3xl mx-auto"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
+              </h1>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 Discover amazing content across various topics, curated just for
                 you.
-              </motion.p>
+              </p>
             </div>
           </div>
         </div>
-{/* 
-        <div className="flex justify-center items-center mt-10 -mb-5">
-          <SearchBar />
-        </div> */}
-
-        {/* Categories Grid */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {categories.map((category, index) => (
-              <motion.div
-                key={category.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-3xl"
-              >
+            {categories.map((category) => (
+              <div key={category.title} className="group relative overflow-hidden rounded-3xl">
                 <div className="absolute inset-0">
                   <img
                     src={category.image}
                     alt={category.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    // loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-100 group-hover:scale-110"
+                    style={{ backgroundColor: "#f0f0f0" }}
                   />
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-50`}
-                  ></div>
+                  <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-50`}></div>
                 </div>
 
                 <div className="relative p-8 h-full min-h-[400px] flex flex-col">
@@ -200,9 +175,7 @@ const Categories = () => {
                   </div>
 
                   <div className="mt-auto">
-                    <h3 className="text-2xl font-bold mb-3 text-white">
-                      {category.title}
-                    </h3>
+                    <h3 className="text-2xl font-bold mb-3 text-white">{category.title}</h3>
                     <p className="text-white/90 mb-6">{category.description}</p>
 
                     <button
@@ -218,7 +191,7 @@ const Categories = () => {
                     </button>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
