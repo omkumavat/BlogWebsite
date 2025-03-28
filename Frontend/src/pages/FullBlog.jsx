@@ -1,13 +1,38 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import ShareBlog from "../components/ShareBlog"; // adjust the path as needed
-
+import ShareBlog from "../components/ShareBlog";
+import axios from "axios";
 const BlogDetails = () => {
-  const location = useLocation();
+  const { id } = useParams(); // Get blog ID from URL
   const navigate = useNavigate();
-  const blog = location.state?.blog;
+  const [blog, setBlog] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBlog = async () => {
+      try {
+        const response = await axios.get(`https://quickquill-backend.vercel.app/server/blog/getblogbyid/${id}`); // Replace with your API endpoint
+        const data = response.data
+        setBlog(data);
+      } catch (error) {
+        console.error("Error fetching blog:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBlog();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <h2 className="text-xl font-semibold text-gray-700">Loading...</h2>
+      </div>
+    );
+  }
 
   if (!blog) {
     return (
@@ -23,7 +48,6 @@ const BlogDetails = () => {
     <>
       <Navbar />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-white rounded-lg">
-        {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
           className="flex items-center space-x-2 mt-20 text-blue-600 hover:text-blue-800 transition-all duration-300 mb-6"
@@ -45,7 +69,6 @@ const BlogDetails = () => {
           <ShareBlog blogUrl={blogUrl} blogTitle={blog.title} />
         </div>
 
-        {/* Blog Content */}
         <div
           className="text-gray-800 text-lg leading-relaxed bg-white p-6"
           style={{ fontFamily: 'Arial, sans-serif' }}

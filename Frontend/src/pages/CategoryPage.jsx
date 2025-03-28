@@ -268,7 +268,7 @@ function CategoryPage() {
                                             {isTruncated && (
                                                 <button className="text-blue-600 hover:text-blue-800 inline-block mt-2"
                                                     onClick={() => {
-                                                        navigate(`/blog/${blog._id}`, { state: { blog } })
+                                                        navigate(`/blog/${blog._id}`)
                                                     }}>
                                                     Read More →
                                                 </button>
