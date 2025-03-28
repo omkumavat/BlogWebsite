@@ -44,8 +44,8 @@ export const sendOTPEmail = async (req, res) => {
   }
 };
 
-export const sendSignUpSuccessfulEmail = async (req, res) => {
-  const { name, email } = req.body;
+export const sendSignUpSuccessfulEmail = async (body) => {
+  const { name, email } = body;
   try {
     // Build the absolute path for the template file
     const templatePath = path.join(__dirname, "../views", "SignupSuccess.hbs");
@@ -61,9 +61,9 @@ export const sendSignUpSuccessfulEmail = async (req, res) => {
     };
 
     await transporter.sendMail(mailOptions);
-    res.status(200).json({ success: true, message: "Sign up successful email sent" });
+    // res.status(200).json({ success: true, message: "Sign up successful email sent" });
   } catch (error) {
     console.error("Error sending sign-up email:", error);
-    res.status(500).json({ error: "Failed to send sign-up email" });
+    // res.status(500).json({ error: "Failed to send sign-up email" });
   }
 };

@@ -32,8 +32,8 @@ app.get('/',(req,res)=>{
     res.send("hello");
 })
 
-// app.listen(PORT,()=>{
-//     console.log(`Server is running on Port:${PORT}`);
-// })
+app.listen(PORT,()=>{
+    console.log(`Server is running on Port:${PORT}`);
+})
 
 export default app;

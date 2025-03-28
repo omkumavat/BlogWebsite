@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { sendSignUpSuccessfulEmail } from "./EmailServices.js";
 
+
 export const signup = async (req, res) => {
   try {
     const { fullName, email, password } = req.body;
@@ -12,13 +13,24 @@ export const signup = async (req, res) => {
       return res
         .status(400)
         .json({ message: "User already exists", status: false });
+
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({
       name: fullName,
       email,
       password: hashedPassword,
     });
-    const payload = { userId: newUser._id, email: newUser.email, name: newUser.name };
+
+    // Save the user first
+    const savedUser = await newUser.save();
+
+    // Now construct payload from the saved user
+    const payload = {
+      userId: savedUser._id,
+      email: savedUser.email,
+      name: savedUser.name,
+    };
+
     let token;
     try {
       token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "2h" });
@@ -29,18 +41,23 @@ export const signup = async (req, res) => {
         status: false,
       });
     }
-    await newUser.save();
-    await sendSignUpSuccessfulEmail({ body: { name: fullName, email } }, res);
-    res
-      .status(201)
-      .json({
-        message: "User registered successfully", status: true, token,
-        user: payload,
-      });
+
+    // Send email (make sure this doesn't interfere with your response)
+    const body = { name: fullName, email };
+    await sendSignUpSuccessfulEmail(body);
+
+    return res.status(201).json({
+      message: "User registered successfully",
+      status: true,
+      token,
+      user: payload,
+    });
   } catch (error) {
-    res.status(500).json({ error: "Internal server error", status: false });
+    console.error("Signup error:", error);
+    return res.status(500).json({ error: "Internal server error", status: false });
   }
 };
+
 
 export const login = async (req, res) => {
   try {

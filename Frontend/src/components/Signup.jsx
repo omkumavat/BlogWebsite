@@ -212,7 +212,6 @@ function Signup({ onSwitchToLogin }) {
       // Call your backend to create account, e.g., /api/create-account
       const response = await axios.post("https://quickquill-backend.vercel.app/server/user/signup", { fullName, email, password });
       toast.success("Account created successfully");
-
       login(response.data.user);
       navigate("/dashboard/add-blog");
     } catch (error) {
