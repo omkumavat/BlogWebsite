@@ -59,6 +59,7 @@ export const sendSignUpSuccessfulEmail = async (req, res) => {
         html: htmlContent,
     };
 
+
     try {
         await transporter.sendMail(mailOptions);
         // console.log("OTP email sent successfully.");
