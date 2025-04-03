@@ -7,5 +7,6 @@ const BlogSchema = new mongoose.Schema({
   category: { type: mongoose.Schema.Types.ObjectId, ref: "Category", required: true },
 },{timestamps:true});
 
+
 const Blog=mongoose.model("Blog", BlogSchema);
 export default Blog;

@@ -23,7 +23,7 @@ const MyBlogs = () => {
       try {
         // Adjust your endpoint accordingly
         const response = await axios.get(
-          `https://quickquillbackend.vercel.app/server/user/getuserblogs/${currentUser.userId}`
+          `http://localhost:4000/server/user/getuserblogs/${currentUser.userId}`
         );
         // Assuming response.data.blogs is the array of blog posts
         setBlogs(response.data.blogs);
@@ -53,7 +53,7 @@ const MyBlogs = () => {
     }
     try {
       // Replace with your actual delete endpoint, e.g., DELETE /blogs/:id
-      await axios.delete(`https://quickquillbackend.vercel.app/server/blog/delete/${selectedBlog._id}`);
+      await axios.delete(`http://localhost:4000/server/blog/delete/${selectedBlog._id}`);
       toast.success("Blog deleted successfully");
       setBlogs((prev) => prev.filter((b) => b._id !== selectedBlog._id));
       setDeleteModalOpen(false);

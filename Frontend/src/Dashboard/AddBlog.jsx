@@ -15,7 +15,7 @@ const AddBlog = () => {
     const fetchCategories = async () => {
       try {
         const res = await axios.get(
-          "https://quickquillbackend.vercel.app/server/category/getcategoryname"
+          "http://localhost:4000/server/category/getcategoryname"
         );
         // console.log(res.data.categories);
         setCategories(res.data.categories);
@@ -44,7 +44,7 @@ const AddBlog = () => {
 
     try {
       const res = await axios.post(
-        "https://quickquillbackend.vercel.app/server/blog/addblog",
+        "http://localhost:4000/server/blog/addblog",
         blogData,
         {
           headers: {

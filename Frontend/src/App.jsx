@@ -20,7 +20,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/blog/categories" element={<Categories />} />
         <Route path="/blog/categories/:catname" element={<CategoryPage />} />
-        <Route path="/blog/:name" element={<FullBlog />} />
+        <Route path="/blog/:id" element={<FullBlog />} />
         <Route path="/dashboard" element={<Dashboard />}>
         <Route index element={<Navigate to="add-blog" replace />} />
         <Route path="add-blog" element={<AddBlog />} />

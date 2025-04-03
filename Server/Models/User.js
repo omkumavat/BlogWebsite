@@ -8,5 +8,6 @@ const UserSchema = new mongoose.Schema({
   blogs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Blog" }]
 },{timestamps:true});
 
+
 const User=mongoose.model("User", UserSchema);
 export default User;

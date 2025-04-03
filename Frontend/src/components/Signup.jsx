@@ -133,7 +133,7 @@ function Signup({ onSwitchToLogin }) {
     const otpValue = generateOtp();
     try {
       // Call your backend endpoint, e.g., /api/send-otp
-      await axios.post("https://quickquillbackend.vercel.app/server/user/send-otp", { name: fullName, email, otp: otpValue });
+      await axios.post("http://localhost:4000/server/user/send-otp", { name: fullName, email, otp: otpValue });
       toast.success("OTP has been sent to your email");
       setTimer(120);
       setOtpAttempts(3);
@@ -210,9 +210,8 @@ function Signup({ onSwitchToLogin }) {
     setDisablef(true);
     try {
       // Call your backend to create account, e.g., /api/create-account
-      const response = await axios.post("https://quickquillbackend.vercel.app/server/user/signup", { fullName, email, password });
+      const response = await axios.post("http://localhost:4000/server/user/signup", { fullName, email, password });
       toast.success("Account created successfully");
-
       login(response.data.user);
       navigate("/dashboard/add-blog");
     } catch (error) {

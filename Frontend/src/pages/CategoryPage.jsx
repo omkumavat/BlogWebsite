@@ -149,11 +149,12 @@ const ITEMS_PER_PAGE = 6;
 function CategoryPage() {
     const { catname } = useParams();
     const location = useLocation();
+    const [loading, setLoading] = useState(false);
     const categoryId = location.state?.categoryId;
 
     const [blogs, setBlogs] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const navigate=useNavigate();
+    const navigate = useNavigate();
 
     // Find category info based on the catname param.
     const categoryInfo =
@@ -167,10 +168,11 @@ function CategoryPage() {
     // Fetch blogs for the given category from the backend.
     useEffect(() => {
         const fetchBlogs = async () => {
+            setLoading(true);
             try {
                 // Adjust this endpoint as per your backend implementation.
                 const response = await fetch(
-                    `https://quickquillbackend.vercel.app/server/category/getcategorybyid/${categoryId}`
+                    `http://localhost:4000/server/category/getcategorybyid/${categoryId}`
                 );
                 if (!response.ok) {
                     throw new Error("Failed to fetch blogs");
@@ -180,6 +182,7 @@ function CategoryPage() {
             } catch (error) {
                 console.error("Error fetching blogs:", error);
             }
+            setLoading(false);
         };
 
         if (categoryId) {
@@ -232,7 +235,7 @@ function CategoryPage() {
                 <div className="max-w-4xl mx-auto px-4 py-12">
                     {/* Grid layout with two blogs per row on md+ screens */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {currentBlogs.length > 0 ? (
+                        {currentBlogs.length > 0 && (
                             currentBlogs.map((blog) => {
                                 const plainText = getPlainText(blog.content);
                                 const isTruncated = plainText.length > excerptLimit;
@@ -264,9 +267,9 @@ function CategoryPage() {
                                             </div>
                                             {isTruncated && (
                                                 <button className="text-blue-600 hover:text-blue-800 inline-block mt-2"
-                                                onClick={()  => {
-                                                    navigate(`/blog/${blog._id}`,{state:{blog}})
-                                                }}>
+                                                    onClick={() => {
+                                                        navigate(`/blog/${blog._id}`)
+                                                    }}>
                                                     Read More →
                                                 </button>
                                             )}
@@ -274,9 +277,17 @@ function CategoryPage() {
                                     </div>
                                 );
                             })
-                        ) : (
-                            <h2>No Blogs Found in this Category!</h2>
                         )}
+                        {
+                            loading && (
+                                <h2>Loading Blogs !</h2>
+                            )
+                        }
+                        {
+                            !loading && !currentBlogs.length && (
+                                <h2>No Blogs Found !</h2>
+                            )
+                        }
                     </div>
 
                     {/* Pagination */}
@@ -287,8 +298,8 @@ function CategoryPage() {
                                     key={index}
                                     onClick={() => setCurrentPage(index + 1)}
                                     className={`px-4 py-2 rounded-md transition-colors ${currentPage === index + 1
-                                            ? "bg-blue-600 text-white"
-                                            : "bg-white text-gray-700 hover:bg-gray-100 border"
+                                        ? "bg-blue-600 text-white"
+                                        : "bg-white text-gray-700 hover:bg-gray-100 border"
                                         }`}
                                 >
                                     {index + 1}
