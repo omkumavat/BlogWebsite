@@ -14,7 +14,7 @@ const BlogDetails = () => {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/server/blog/getblogbyid/${id}`); // Replace with your API endpoint
+        const response = await axios.get(`https://quickquill-backend.vercel.app/server/blog/getblogbyid/${id}`); // Replace with your API endpoint
         const data = response.data;
         console.log(data);
         setBlog(data);
